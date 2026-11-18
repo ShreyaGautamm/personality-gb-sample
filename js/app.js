@@ -1,149 +1,111 @@
 /**
- * Research Showcase Interactive Application
- * - Animated Video-like Pipeline (Figure 2)
- * - Gamified Centroid Alignment Simulator
- * - OLS Regression & Model Benchmarks
+ * Research Showcase Application Logic
+ * - Animated Moving Pipeline Flow (Figure 2)
+ * - Interactive Centroid Alignment Simulator
+ * - OLS Regression Trait Effects Forest Plot
  * - BibTeX Copy
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initPipelineVideo();
+  initFigure2Flow();
   initCentroidGame();
   initRegressionPlot();
   initBibtexCopy();
 });
 
 /* -------------------------------------------------------------
- * 1. Animated Video-Like Pipeline (Figure 2)
+ * 1. Animated Moving Pipeline Flow (Figure 2)
  * ------------------------------------------------------------- */
-function initPipelineVideo() {
-  const steps = [
-    {
-      title: "Step 1: Persona Attributes Specification",
-      subtitle: "Language (English/Hindi) • 50 Occupations • Gender (M/F/N) • 9 Personality Traits",
-      desc: "Personas are constructed systematically by combining occupational scenarios grounded in India with psychological trait descriptions from HEXACO and the Dark Triad across High and Low score levels."
-    },
-    {
-      title: "Step 2: Structured Prompt Construction",
-      subtitle: "Standardized Task & Scenario Injections",
-      desc: "Prompts instruct the LLM to generate a workplace artifact (e.g. lesson plan, safety checklist, patient report) as a 6–8 sentence paragraph reflecting the persona's worldview and personality."
-    },
-    {
-      title: "Step 3: Diverse Multi-Architecture Model Family",
-      subtitle: "6 State-of-the-Art Language Models",
-      desc: "Prompts are dispatched to GPT-5 nano, LLaMA-3.3-70B, Gemma-3-1B, DeepSeek-R1, Mixtral-8x7B, and Falcon-Mamba-7B to test generalization across LLM, SLM, LRM, MoE, and SSM architectures."
-    },
-    {
-      title: "Step 4: Controlled Multilingual Corpus Generation",
-      subtitle: "23,400 Generated Artifacts + 300 Baselines",
-      desc: "Each model produces 3,900 artifacts in English and Hindi. Explicit baselines without personality are generated to isolate the exact marginal modulation caused by personality traits."
-    },
-    {
-      title: "Step 5: Centroid-Based Difference-of-Cosines Scoring",
-      subtitle: "IndicSBERT Embedding Space: cos(s, c_male) - cos(s, c_female)",
-      desc: "Artifacts are segmented into sentences and embedded using IndicSBERT. The story-level bias score is computed by measuring proximity to male and female stereotype centroids via peak salience (max-abs)."
-    }
+function initFigure2Flow() {
+  const stepCards = [
+    document.getElementById('stepCard1'),
+    document.getElementById('stepCard2'),
+    document.getElementById('stepCard3'),
+    document.getElementById('stepCard4')
   ];
 
-  let currentStep = 0;
+  const centroidCards = [
+    document.getElementById('stepCentroid1'),
+    document.getElementById('stepCentroid2'),
+    document.getElementById('stepCentroid3')
+  ];
+
+  const playBtn = document.getElementById('flowPlayBtn');
+  const resetBtn = document.getElementById('flowResetBtn');
+
+  let currentPhase = 0;
   let isPlaying = true;
-  let playInterval = null;
+  let flowTimer = null;
 
-  const playBtn = document.getElementById('videoPlayBtn');
-  const prevBtn = document.getElementById('videoPrevBtn');
-  const nextBtn = document.getElementById('videoNextBtn');
-  const timeDisplay = document.getElementById('videoTimeDisplay');
-  const progressEl = document.getElementById('videoProgress');
-  const stepInfoTitle = document.getElementById('videoStepTitle');
-  const stepInfoDesc = document.getElementById('videoStepDesc');
-  const nodes = document.querySelectorAll('.pipeline-node');
-  const connectors = document.querySelectorAll('.pipeline-connector');
+  function setPhase(phase) {
+    currentPhase = phase;
 
-  function renderStep(index) {
-    currentStep = index;
+    // Reset all
+    stepCards.forEach(c => c && c.classList.remove('active-step'));
+    centroidCards.forEach(c => c && c.classList.remove('active-step'));
 
-    // Update nodes
-    nodes.forEach((node, idx) => {
-      if (idx === index) {
-        node.classList.add('active-node');
-      } else {
-        node.classList.remove('active-node');
-      }
-    });
-
-    // Update connectors
-    connectors.forEach((conn, idx) => {
-      if (idx < index) {
-        conn.classList.add('active-connector');
-      } else {
-        conn.classList.remove('active-connector');
-      }
-    });
-
-    // Update progress bar & time
-    const pct = ((index + 1) / steps.length) * 100;
-    progressEl.style.width = `${pct}%`;
-    timeDisplay.textContent = `00:0${(index + 1) * 3} / 00:15`;
-
-    // Update text
-    stepInfoTitle.innerHTML = `<strong>${steps[index].title}:</strong> <span style="color: #94a3b8; font-weight: normal;">${steps[index].subtitle}</span>`;
-    stepInfoDesc.textContent = steps[index].desc;
+    if (phase >= 0 && phase < 4) {
+      if (stepCards[phase]) stepCards[phase].classList.add('active-step');
+      // Also highlight corresponding centroid phase in parallel
+      const cIdx = Math.min(phase, 2);
+      if (centroidCards[cIdx]) centroidCards[cIdx].classList.add('active-step');
+    }
   }
 
-  function startPlay() {
+  function tick() {
+    currentPhase = (currentPhase + 1) % 4;
+    setPhase(currentPhase);
+  }
+
+  function start() {
     isPlaying = true;
-    playBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
-    clearInterval(playInterval);
-    playInterval = setInterval(() => {
-      const next = (currentStep + 1) % steps.length;
-      renderStep(next);
-    }, 3500);
+    if (playBtn) playBtn.textContent = '⏸ Pause Flow';
+    clearInterval(flowTimer);
+    flowTimer = setInterval(tick, 2200);
   }
 
-  function pausePlay() {
+  function pause() {
     isPlaying = false;
-    playBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
-    clearInterval(playInterval);
+    if (playBtn) playBtn.textContent = '▶ Play Flow';
+    clearInterval(flowTimer);
   }
 
-  playBtn.addEventListener('click', () => {
-    if (isPlaying) pausePlay();
-    else startPlay();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    pausePlay();
-    const prev = (currentStep - 1 + steps.length) % steps.length;
-    renderStep(prev);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    pausePlay();
-    const next = (currentStep + 1) % steps.length;
-    renderStep(next);
-  });
-
-  nodes.forEach((node, idx) => {
-    node.addEventListener('click', () => {
-      pausePlay();
-      renderStep(idx);
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) pause();
+      else start();
     });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      setPhase(0);
+      start();
+    });
+  }
+
+  // Interactive click on any step card
+  stepCards.forEach((card, idx) => {
+    if (card) {
+      card.addEventListener('click', () => {
+        pause();
+        setPhase(idx);
+      });
+    }
   });
 
-  // Start initial playback loop
-  renderStep(0);
-  startPlay();
+  setPhase(0);
+  start();
 }
 
 /* -------------------------------------------------------------
- * 2. Gamified Interactive Centroid Alignment Simulator
+ * 2. Interactive Centroid Alignment Demo
  * ------------------------------------------------------------- */
 function initCentroidGame() {
   const occSelect = document.getElementById('gameOccSelect');
   const genderSelect = document.getElementById('gameGenderSelect');
   const traitSelect = document.getElementById('gameTraitSelect');
   const modelSelect = document.getElementById('gameModelSelect');
-  const langSelect = document.getElementById('gameLangSelect');
   const runBtn = document.getElementById('gameRunBtn');
 
   const needle = document.getElementById('gaugeNeedle');
@@ -153,7 +115,7 @@ function initCentroidGame() {
 
   if (!occSelect || !window.PAPER_DATA) return;
 
-  // 1. Populate Occupations
+  // 1. Populate Occupations (from 50 Indian roles)
   window.PAPER_DATA.occupations.forEach(occ => {
     const opt = document.createElement('option');
     opt.value = occ.id;
@@ -183,7 +145,7 @@ function initCentroidGame() {
     traitSelect.appendChild(opt);
   });
 
-  // Pre-configured curated narratives from Figures 8-16
+  // Curated qualitative examples from the paper
   const curatedExamples = {
     domestic_worker: {
       psychopathy_high: {
@@ -252,33 +214,30 @@ function initCentroidGame() {
     let storyText = "";
     let reasoning = "";
 
-    // Check if we have exact curated data
     if (curatedExamples[occ] && curatedExamples[occ][trait] && curatedExamples[occ][trait][gender]) {
       const match = curatedExamples[occ][trait][gender];
       score = match.score;
       storyText = match.text;
       reasoning = match.cues;
     } else {
-      // Dynamic synthesis based on regression estimates from paper
       const isMaleCoded = window.PAPER_DATA.occupations.find(o => o.id === occ)?.type === 'male-stereotyped';
-      let base = isMaleCoded ? 0.018 : -0.015;
+      let base = isMaleCoded ? 0.016 : -0.014;
 
       if (gender === 'male') base += 0.011;
       else if (gender === 'female') base -= 0.004;
 
       if (trait.includes('psychopathy') || trait.includes('machiavellianism')) {
-        base += 0.019; // Strong amplifier
+        base += 0.019;
       } else if (trait.includes('openness') || trait.includes('emotionality')) {
-        base -= 0.005; // Attenuator
+        base -= 0.005;
       }
 
       score = base;
-      storyText = `Generating simulated narrative for ${gender} ${occ.replace('_', ' ')} under ${trait.replace('_', ' ')} condition: Contextual artifact produced according to workplace scenario, showing systematic modulation in agency, framing, and linguistic alignment.`;
-      reasoning = `Synthesized based on OLS regression model: Trait ${trait} applies a shift of ${score > 0 ? '+' : ''}${score.toFixed(3)} relative to baseline.`;
+      storyText = `Narrative generated for ${gender} ${occ.replace('_', ' ')}: Output shows personality-driven modulation of professional conduct and agency in the workplace scenario.`;
+      reasoning = `Predicted based on OLS model: Trait ${trait} applies a shift of ${score > 0 ? '+' : ''}${score.toFixed(3)} relative to neutral baseline.`;
     }
 
-    // Update gauge needle
-    // Map score [-0.05, +0.05] to 5%..95%
+    // Needle position mapping
     const minVal = -0.05;
     const maxVal = 0.05;
     const clamped = Math.max(minVal, Math.min(maxVal, score));
@@ -291,28 +250,27 @@ function initCentroidGame() {
 
     scoreDisplay.innerHTML = `
       <span style="color: ${isMaleLean ? '#0284c7' : '#e11d48'};">
-        IndicSBERT Score: ${sign}${score.toFixed(3)}
-        (${isMaleLean ? 'Male-Stereotype Centroid Leaning' : 'Female-Stereotype Centroid Leaning'})
+        IndicSBERT Score: ${sign}${score.toFixed(3)} • ${isMaleLean ? 'Male Centroid Leaning' : 'Female Centroid Leaning'}
       </span>
     `;
 
     storyContainer.innerHTML = `
-      <div style="margin-bottom: 0.5rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #64748b;">
-        Generated Persona Artifact (${genderSelect.value.toUpperCase()}, ${modelSelect.value})
+      <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem;">
+        Generated Persona Narrative (${genderSelect.value.toUpperCase()}, ${modelSelect.value}):
       </div>
       <div>"${storyText}"</div>
     `;
 
     explanationBox.innerHTML = `
-      <strong>Alignment Analysis:</strong> ${reasoning}
+      <strong>Linguistic Alignment Insight:</strong> ${reasoning}
     `;
   }
 
   runBtn.addEventListener('click', simulate);
 
-  // Challenge Preset buttons
-  const challengePills = document.querySelectorAll('.challenge-pill');
-  challengePills.forEach(pill => {
+  // Challenge Pills
+  const pills = document.querySelectorAll('.quick-pill');
+  pills.forEach(pill => {
     pill.addEventListener('click', () => {
       const pOcc = pill.getAttribute('data-occ');
       const pGender = pill.getAttribute('data-gender');
@@ -326,7 +284,7 @@ function initCentroidGame() {
     });
   });
 
-  // Run initial simulation
+  // Default selection
   occSelect.value = 'domestic_worker';
   genderSelect.value = 'female';
   traitSelect.value = 'psychopathy_high';
@@ -334,7 +292,7 @@ function initCentroidGame() {
 }
 
 /* -------------------------------------------------------------
- * 3. Regression Forest Plot (Figure 4)
+ * 3. Regression Forest Plot
  * ------------------------------------------------------------- */
 function initRegressionPlot() {
   const container = document.getElementById('forestPlotContainer');
@@ -358,12 +316,14 @@ function initRegressionPlot() {
 
     html += `
       <div class="forest-row">
-        <div class="forest-label" title="${item.trait} (${item.group})">${item.trait}</div>
-        <div class="forest-track">
-          <div class="forest-zero-line"></div>
-          <div class="forest-bar" style="left: ${barLeft}%; width: ${Math.max(2, barWidth)}%; background: ${barColor};"></div>
+        <div class="forest-label" title="${item.trait}">${item.trait}</div>
+        <div class="forest-bar-area">
+          <div class="forest-axis-zero"></div>
+          <div class="forest-fill-bar" style="left: ${barLeft}%; width: ${Math.max(2, barWidth)}%; background: ${barColor};"></div>
         </div>
-        <div class="forest-val" style="color: ${barColor};">${sign}${item.coef.toFixed(3)}</div>
+        <div style="font-family: var(--font-mono); font-size: 0.76rem; text-align: right; font-weight: 700; color: ${barColor};">
+          ${sign}${item.coef.toFixed(3)}
+        </div>
       </div>
     `;
   });
