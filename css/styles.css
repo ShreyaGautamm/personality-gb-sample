@@ -1,4 +1,4 @@
-/* Academic Research UI - Clean Light Theme */
+/* Academic Research UI - Clean Light Theme with Vibrant Berry Accent */
 :root {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-serif: 'Merriweather', Georgia, Cambria, 'Times New Roman', serif;
@@ -8,20 +8,20 @@
   --bg-primary: #fcfbfe;
   --bg-secondary: #f6f5f9;
   --bg-card: #ffffff;
-  --bg-card-hover: #ffffff;
   --border-color: #e5e7eb;
   --border-subtle: #f0f1f4;
-  --border-focus: #6b1d49;
 
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-muted: #64748b;
 
-  /* Brand Plum / Maroon Accent */
-  --brand-plum: #6b1d49;
-  --brand-plum-hover: #521336;
-  --brand-plum-light: rgba(107, 29, 73, 0.08);
-  --brand-plum-subtle: rgba(107, 29, 73, 0.04);
+  /* Vibrant Bright Berry / Crimson Accent */
+  --brand-color: #9f1239; /* Rich vibrant crimson / berry */
+  --brand-color-hover: #881337;
+  --brand-color-bright: #e11d48;
+  --brand-color-light: rgba(159, 18, 57, 0.08);
+  --brand-color-subtle: rgba(159, 18, 57, 0.04);
+  --brand-glow: rgba(225, 29, 72, 0.25);
 
   /* Gender coding colors */
   --color-male: #0284c7;
@@ -52,7 +52,6 @@ body {
   background-color: var(--bg-primary);
 }
 
-/* Container */
 .container {
   width: 100%;
   max-width: 1100px;
@@ -60,13 +59,15 @@ body {
   padding: 0 1.5rem;
 }
 
-/* Navigation */
+/* -------------------------------------------------------------
+ * Navigation
+ * ------------------------------------------------------------- */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 50;
   backdrop-filter: blur(12px);
-  background-color: rgba(252, 251, 254, 0.92);
+  background-color: rgba(252, 251, 254, 0.94);
   border-bottom: 1px solid var(--border-color);
   transition: all 0.2s ease;
 }
@@ -82,17 +83,17 @@ body {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-weight: 700;
-  font-size: 0.98rem;
+  font-weight: 800;
+  font-size: 1rem;
   letter-spacing: -0.01em;
-  color: var(--brand-plum);
+  color: var(--brand-color);
   text-decoration: none;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   list-style: none;
 }
 
@@ -105,12 +106,12 @@ body {
 }
 
 .nav-links a:hover {
-  color: var(--brand-plum);
+  color: var(--brand-color);
 }
 
 .nav-cta {
-  border: 1.5px dashed var(--brand-plum);
-  color: var(--brand-plum) !important;
+  border: 1.5px dashed var(--brand-color);
+  color: var(--brand-color) !important;
   padding: 0.35rem 0.85rem;
   border-radius: 7px;
   font-weight: 600 !important;
@@ -119,22 +120,21 @@ body {
 }
 
 .nav-cta:hover {
-  background: var(--brand-plum-light);
+  background: var(--brand-color-light);
 }
 
 /* -------------------------------------------------------------
- * Hero Section (Exact Match to Reference Screenshot)
+ * Hero Section (Exact Match to Reference Template)
  * ------------------------------------------------------------- */
 .hero-section {
   padding: 4rem 0 2.5rem;
   text-align: left;
 }
 
-/* 1. Category Topics Line */
 .hero-topics {
   font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #64748b;
   margin-bottom: 1.4rem;
@@ -145,11 +145,10 @@ body {
 }
 
 .topic-dot {
-  color: #94a3b8;
+  color: #cbd5e1;
   font-size: 0.9rem;
 }
 
-/* 2. Hero Title */
 .hero-title {
   font-size: clamp(2.2rem, 4.8vw, 3.6rem);
   font-weight: 800;
@@ -161,10 +160,9 @@ body {
 }
 
 .hero-brand {
-  color: var(--brand-plum);
+  color: var(--brand-color);
 }
 
-/* 3. Hero Subtitle (Italic description) */
 .hero-subtitle {
   font-size: 1.18rem;
   font-style: italic;
@@ -175,7 +173,6 @@ body {
   margin-bottom: 2rem;
 }
 
-/* 4. Authors and Affiliations */
 .hero-authors-wrap {
   margin-bottom: 2.2rem;
 }
@@ -227,7 +224,6 @@ body {
   font-size: 0.82rem;
 }
 
-/* 5. Buttons (Solid Maroon Pills & Dashed Border Pills) */
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -240,7 +236,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--brand-plum);
+  background-color: var(--brand-color);
   color: #ffffff;
   padding: 0.6rem 1.25rem;
   border-radius: 8px;
@@ -249,11 +245,11 @@ body {
   text-decoration: none;
   border: 1px solid transparent;
   transition: all 0.15s ease;
-  box-shadow: 0 1px 2px rgba(107, 29, 73, 0.15);
+  box-shadow: 0 1px 2px rgba(159, 18, 57, 0.15);
 }
 
 .btn-solid-plum:hover {
-  background-color: var(--brand-plum-hover);
+  background-color: var(--brand-color-hover);
   transform: translateY(-1px);
 }
 
@@ -262,8 +258,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   background-color: transparent;
-  color: var(--brand-plum);
-  border: 1.5px dashed var(--brand-plum);
+  color: var(--brand-color);
+  border: 1.5px dashed var(--brand-color);
   padding: 0.58rem 1.2rem;
   border-radius: 8px;
   font-size: 0.92rem;
@@ -274,57 +270,12 @@ body {
 }
 
 .btn-dashed-plum:hover {
-  background-color: var(--brand-plum-light);
+  background-color: var(--brand-color-light);
   transform: translateY(-1px);
 }
 
-/* Stat Banner */
-.stat-banner {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.stat-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 1.25rem;
-  text-align: left;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.stat-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.stat-num {
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: var(--brand-plum);
-  line-height: 1.1;
-  margin-bottom: 0.25rem;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #1e293b;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.2rem;
-}
-
-.stat-desc {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
 /* -------------------------------------------------------------
- * General Sections & Cards
+ * Section General Styling
  * ------------------------------------------------------------- */
 .section {
   padding: 3.5rem 0;
@@ -339,10 +290,10 @@ body {
 .section-tag {
   display: inline-block;
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--brand-plum);
+  letter-spacing: 0.12em;
+  color: var(--brand-color);
   margin-bottom: 0.4rem;
 }
 
@@ -355,7 +306,7 @@ body {
 }
 
 .section-subtitle {
-  max-width: 800px;
+  max-width: 840px;
   color: #475569;
   font-size: 1rem;
 }
@@ -368,337 +319,410 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* Interactive Story Comparator */
-.comparator-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  align-items: center;
-  background: #f8fafc;
-  padding: 1rem 1.25rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-}
-
-.control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-width: 240px;
-  flex: 1;
-}
-
-.control-group label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.custom-select {
-  background: #ffffff;
-  color: #1e293b;
-  border: 1px solid #cbd5e1;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.88rem;
-  font-family: inherit;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.custom-select:focus {
-  border-color: var(--brand-plum);
-}
-
-.story-insight-box {
-  background: rgba(107, 29, 73, 0.05);
-  border-left: 4px solid var(--brand-plum);
-  padding: 1rem 1.25rem;
-  border-radius: 0 6px 6px 0;
-  margin-bottom: 1.5rem;
-  font-size: 0.92rem;
-  color: #334155;
-}
-
-.story-insight-box strong {
-  color: var(--brand-plum);
-}
-
-/* Side by Side Stories Grid */
-.stories-grid {
+/* -------------------------------------------------------------
+ * 1. Overview & "What's New" Grid
+ * ------------------------------------------------------------- */
+.overview-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
+  margin-top: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .stories-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.story-column {
-  border-radius: 8px;
-  padding: 1.25rem;
-  border: 1px solid transparent;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-}
-
-.story-column.male-column {
-  border-color: var(--color-male-border);
-  background: linear-gradient(to bottom, rgba(2, 132, 199, 0.03), #ffffff);
-}
-
-.story-column.female-column {
-  border-color: var(--color-female-border);
-  background: linear-gradient(to bottom, rgba(225, 29, 72, 0.03), #ffffff);
-}
-
-.story-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 0.65rem;
-  margin-bottom: 0.85rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.story-gender-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 700;
-  font-size: 0.82rem;
-  padding: 0.2rem 0.55rem;
-  border-radius: 5px;
-}
-
-.male-badge {
-  background: var(--color-male-bg);
-  color: var(--color-male);
-  border: 1px solid var(--color-male-border);
-}
-
-.female-badge {
-  background: var(--color-female-bg);
-  color: var(--color-female);
-  border: 1px solid var(--color-female-border);
-}
-
-.score-badge {
-  font-size: 0.82rem;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-
-.score-male {
-  background: rgba(2, 132, 199, 0.12);
-  color: #0369a1;
-}
-
-.score-female {
-  background: rgba(225, 29, 72, 0.12);
-  color: #be123c;
-}
-
-.story-body {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: #1e293b;
-  flex: 1;
-}
-
-/* Highlighting in narratives */
-.hl-segment {
-  position: relative;
-  display: inline;
-  padding: 0.15rem 0.35rem;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: help;
-}
-
-.hl-defiance, .hl-dominance, .hl-grandiosity, .hl-provocation {
-  background: rgba(2, 132, 199, 0.15);
-  border-bottom: 2px solid #0284c7;
-  color: #0c4a6e;
-}
-
-.hl-covert, .hl-sabotage, .hl-bodily_harm, .hl-anxiety, .hl-neglect {
-  background: rgba(225, 29, 72, 0.15);
-  border-bottom: 2px solid #e11d48;
-  color: #881337;
-}
-
-.tag-badge {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-left: 0.3rem;
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.08);
-  vertical-align: middle;
-}
-
-.translation-toggle {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed var(--border-color);
-  font-size: 0.85rem;
-  color: #475569;
-  font-style: italic;
-}
-
-/* Legend */
-.comparator-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.82rem;
-  color: #64748b;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-/* Metric / Centroid Pipeline */
-.pipeline-flow {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.pipeline-step {
+.overview-card {
   background: #ffffff;
   border: 1px solid var(--border-color);
   border-radius: 10px;
-  padding: 1.25rem;
+  padding: 1.4rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s;
 }
 
-.step-num {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--brand-plum);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.4rem;
+.overview-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.step-title {
+.overview-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--brand-color-light);
+  color: var(--brand-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+
+.overview-title {
   font-size: 1.05rem;
   font-weight: 700;
   color: #111827;
   margin-bottom: 0.4rem;
 }
 
-.step-desc {
+.overview-desc {
   font-size: 0.88rem;
   color: #475569;
+  line-height: 1.6;
 }
 
-.formula-card {
-  background: #f8fafc;
-  border: 1px solid var(--border-color);
+/* -------------------------------------------------------------
+ * 2. Moving Video-Like Interactive Pipeline (Figure 2)
+ * ------------------------------------------------------------- */
+.video-player-frame {
+  background: #0f172a;
+  border-radius: 14px;
+  border: 1px solid #334155;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.video-header-bar {
+  background: #1e293b;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #334155;
+}
+
+.video-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.recording-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: pulseRecording 1.5s infinite;
+}
+
+@keyframes pulseRecording {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.video-viewport {
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stepped animated pipeline nodes */
+.pipeline-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  gap: 0.75rem;
+}
+
+.pipeline-node {
+  flex: 1;
+  background: #1e293b;
+  border: 2px solid #475569;
   border-radius: 10px;
+  padding: 1.1rem 0.9rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pipeline-node.active-node {
+  border-color: var(--brand-color-bright);
+  background: #2d1222;
+  box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.pipeline-node-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.pipeline-node-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.pipeline-node-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.pipeline-connector {
+  width: 24px;
+  height: 2px;
+  background: #475569;
+  position: relative;
+}
+
+.pipeline-connector.active-connector {
+  background: var(--brand-color-bright);
+  box-shadow: 0 0 8px var(--brand-color-bright);
+}
+
+/* Video controls bar */
+.video-controls-bar {
+  background: #1e293b;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid #334155;
+}
+
+.video-btn {
+  background: #334155;
+  border: none;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.video-btn:hover {
+  background: var(--brand-color);
+}
+
+.video-timeline {
+  flex: 1;
+  height: 6px;
+  background: #475569;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.video-progress {
+  height: 100%;
+  background: var(--brand-color-bright);
+  width: 25%;
+  transition: width 0.3s ease;
+}
+
+.video-time {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.step-info-card {
+  background: #162032;
+  border-top: 1px solid #334155;
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Centroid Metric Detailed Display */
+.metric-breakdown-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-top: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.formula-card-clean {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.formula-text {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-color);
+}
+
+/* -------------------------------------------------------------
+ * 3. Gamified Interactive Centroid Alignment Display
+ * ------------------------------------------------------------- */
+.game-simulator-box {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.game-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.game-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.game-select-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.btn-simulate {
+  background: var(--brand-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(159, 18, 57, 0.2);
+}
+
+.btn-simulate:hover {
+  background: var(--brand-color-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 18, 57, 0.3);
+}
+
+/* Gamified Centroid Gauge Dial */
+.gauge-wrapper {
+  background: #fdf2f4;
+  border: 1px solid #fecdd3;
+  border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
-  margin-bottom: 2rem;
-}
-
-.formula-display {
-  font-size: 1.25rem;
-  font-family: var(--font-mono);
-  color: var(--brand-plum);
-  font-weight: 600;
-  margin: 0.75rem 0;
-}
-
-/* Centroid Interactive Slider */
-.slider-interactive-box {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-}
-
-.spectrum-track {
+  margin-bottom: 1.75rem;
   position: relative;
-  height: 12px;
+}
+
+.gauge-meter-bar {
+  position: relative;
+  height: 18px;
   border-radius: 9999px;
-  background: linear-gradient(to right, #fb7185, #cbd5e1, #38bdf8);
+  background: linear-gradient(to right, #e11d48, #cbd5e1, #0284c7);
   margin: 2rem 0 1rem;
 }
 
-.spectrum-labels {
+.gauge-needle {
+  position: absolute;
+  top: -8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3.5px solid var(--brand-color);
+  transform: translateX(-50%);
+  transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--brand-color);
+}
+
+.gauge-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
-.spectrum-marker {
-  position: absolute;
-  top: -7px;
-  width: 26px;
-  height: 26px;
+.gauge-result-badge {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+/* Story Result Viewer inside Game */
+.game-story-card {
   background: #ffffff;
-  border: 3px solid var(--brand-plum);
-  border-radius: 50%;
-  transform: translateX(-50%);
-  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 8px rgba(107, 29, 73, 0.3);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.4rem;
+  line-height: 1.7;
+  font-size: 0.96rem;
+  color: #1e293b;
+  margin-bottom: 1.25rem;
 }
 
-.preset-sentences {
+.challenge-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
 }
 
-.preset-btn {
-  background: #f8fafc;
-  border: 1px solid var(--border-color);
+.challenge-pill {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
   color: #334155;
-  padding: 0.4rem 0.75rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 6px;
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
 }
 
-.preset-btn:hover, .preset-btn.active {
-  background: var(--brand-plum-light);
-  border-color: var(--brand-plum);
-  color: var(--brand-plum);
-  font-weight: 600;
+.challenge-pill:hover {
+  background: var(--brand-color-light);
+  border-color: var(--brand-color);
+  color: var(--brand-color);
 }
 
-/* Interactive Charts / Regression */
+/* -------------------------------------------------------------
+ * 4. Results & Forest Plot
+ * ------------------------------------------------------------- */
 .charts-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -715,7 +739,7 @@ body {
   background: #ffffff;
   border: 1px solid var(--border-color);
   border-radius: 10px;
-  padding: 1.25rem;
+  padding: 1.4rem;
 }
 
 .chart-title {
@@ -728,10 +752,9 @@ body {
 .chart-sub {
   font-size: 0.82rem;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-/* Custom Forest Plot styling */
 .forest-plot {
   display: flex;
   flex-direction: column;
@@ -756,7 +779,7 @@ body {
 
 .forest-track {
   position: relative;
-  height: 24px;
+  height: 22px;
   background: #f1f5f9;
   border-radius: 4px;
 }
@@ -773,7 +796,7 @@ body {
 
 .forest-bar {
   position: absolute;
-  top: 6px;
+  top: 5px;
   height: 12px;
   border-radius: 3px;
   transition: all 0.3s ease;
@@ -786,158 +809,61 @@ body {
   font-weight: 700;
 }
 
-/* Quiz Section */
-.quiz-box {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 850px;
-  margin: 0 auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+/* -------------------------------------------------------------
+ * 5. Limitations Section
+ * ------------------------------------------------------------- */
+.limitations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
 }
 
-.quiz-question-header {
-  margin-bottom: 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.limitation-card {
+  background: #f8fafc;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem;
+  font-size: 0.88rem;
 }
 
-.quiz-counter {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--brand-plum);
-  text-transform: uppercase;
-}
-
-.quiz-role-title {
-  font-size: 1.2rem;
+.limitation-title {
   font-weight: 700;
   color: #111827;
+  margin-bottom: 0.35rem;
 }
 
-.quiz-options-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.limitation-desc {
+  color: #475569;
+  line-height: 1.5;
 }
 
-@media (max-width: 640px) {
-  .quiz-options-grid {
-    grid-template-columns: 1fr;
-  }
+/* -------------------------------------------------------------
+ * 6. Code Section ("Releasing Soon")
+ * ------------------------------------------------------------- */
+.code-release-box {
+  background: linear-gradient(135deg, #fdf2f4, #fff);
+  border: 1.5px dashed var(--brand-color);
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
 }
 
-.quiz-card {
-  background: #f8fafc;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.25rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.quiz-card:hover {
-  border-color: #cbd5e1;
-  background: #ffffff;
-}
-
-.quiz-card.selected {
-  border-color: var(--brand-plum);
-  background: var(--brand-plum-subtle);
-}
-
-.quiz-card-label {
+.code-badge-soon {
+  display: inline-block;
+  background: var(--brand-color);
+  color: #fff;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
   font-weight: 700;
-  font-size: 0.88rem;
-  color: #475569;
-  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
 }
 
-.quiz-card-text {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #1e293b;
-  font-style: italic;
-}
-
-.quiz-reveal-box {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: 1rem;
-  display: none;
-}
-
-.quiz-reveal-box.show {
-  display: block;
-}
-
-/* Occupations Table Explorer */
-.table-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.search-input {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  color: #1e293b;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.88rem;
-  flex: 1;
-  min-width: 220px;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--brand-plum);
-}
-
-.occupations-table-container {
-  max-height: 450px;
-  overflow-y: auto;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-}
-
-.table-custom {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-  text-align: left;
-}
-
-.table-custom th {
-  background: #f8fafc;
-  color: #475569;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.table-custom td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-subtle);
-  color: #334155;
-}
-
-.table-custom tr:hover td {
-  background: #f8fafc;
-}
-
-/* BibTeX Section */
+/* -------------------------------------------------------------
+ * 7. Citation (BibTeX)
+ * ------------------------------------------------------------- */
 .bibtex-box {
   background: #111827;
   border: 1px solid #374151;
@@ -987,7 +913,7 @@ body {
 }
 
 .footer a {
-  color: var(--brand-plum);
+  color: var(--brand-color);
   text-decoration: none;
 }
 .footer a:hover {
