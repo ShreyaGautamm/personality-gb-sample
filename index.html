@@ -34,62 +34,66 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero Section (Styled per reference template) -->
   <header class="hero-section">
     <div class="container">
-      <div class="badge-pill">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        arXiv:2604.23600v2 [cs.CL] • Empirical NLP Study
+      <!-- 1. Topics Category Track -->
+      <div class="hero-topics">
+        <span>AI FAIRNESS</span>
+        <span class="topic-dot">·</span>
+        <span>GENDER BIAS</span>
+        <span class="topic-dot">·</span>
+        <span>MULTILINGUAL NLP</span>
+        <span class="topic-dot">·</span>
+        <span>PERSONA CONDITIONING</span>
+        <span class="topic-dot">·</span>
+        <span>LLM NARRATIVES</span>
       </div>
 
+      <!-- 2. Main Title with Maroon Accent -->
       <h1 class="hero-title">
-        Personality Shapes <span class="gradient-text">Gender Bias</span> in Persona-Conditioned LLM Narratives
+        <span class="hero-brand">Personality Shapes Gender Bias</span> in Persona-Conditioned LLM Narratives Across English and Hindi
       </h1>
 
-      <div class="authors-list">
-        <span class="author-item">
-          <span class="author-name">Tanay Kumar*</span>
-          <span class="author-affil">(PoliMi)</span>
-        </span>
-        <span class="author-item">
-          <span class="author-name">Shreya Gautam*</span>
-          <span class="author-affil">(PoliMi)</span>
-        </span>
-        <span class="author-item">
-          <span class="author-name">Aman Chadha†</span>
-          <span class="author-affil">(Apple)</span>
-        </span>
-        <span class="author-item">
-          <span class="author-name">Vinija Jain†</span>
-          <span class="author-affil">(Meta)</span>
-        </span>
-        <span class="author-item">
-          <span class="author-name">Francesco Pierri</span>
-          <span class="author-affil">(PoliMi)</span>
-        </span>
-      </div>
-
-      <p class="author-notes">
-        * Equal contribution. † Work done outside roles at respective companies. Politecnico di Milano, Apple, Meta.
+      <!-- 3. Italic Subtitle / Abstract summary -->
+      <p class="hero-subtitle">
+        An empirical investigation across 23,400 generated stories from six state-of-the-art LLMs, demonstrating that HEXACO and Dark Triad personality traits act as systematic amplifiers and attenuators of gender stereotypes in occupational contexts.
       </p>
 
-      <!-- Action Buttons -->
-      <div class="action-buttons">
-        <a href="https://arxiv.org/abs/2604.23600" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Read Paper (PDF)
+      <!-- 4. Authors & Affiliations -->
+      <div class="hero-authors-wrap">
+        <div class="hero-authors-list">
+          <span class="author-entry">Tanay Kumar<sup>1,*</sup></span>
+          <span class="author-entry">Shreya Gautam<sup>1,*</sup></span>
+          <span class="author-entry">Aman Chadha<sup>2,†</sup></span>
+          <span class="author-entry">Vinija Jain<sup>3,†</sup></span>
+          <span class="author-entry">Francesco Pierri<sup>1</sup></span>
+        </div>
+        <div class="hero-affils-list">
+          <span class="affil-item"><sup>1</sup>Politecnico di Milano</span>
+          <span class="affil-item"><sup>2</sup>Apple</span>
+          <span class="affil-item"><sup>3</sup>Meta</span>
+          <span class="footnote-item">*Equal contribution</span>
+          <span class="footnote-item">†Work done outside role at respective companies</span>
+        </div>
+      </div>
+
+      <!-- 5. Action Buttons (Solid Maroon Pills & Dashed Border Pills) -->
+      <div class="hero-actions">
+        <a href="https://arxiv.org/abs/2604.23600" target="_blank" rel="noopener noreferrer" class="btn-solid-plum">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          arXiv
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-action">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          Code Repository
+        <a href="https://arxiv.org/pdf/2604.23600" target="_blank" rel="noopener noreferrer" class="btn-solid-plum">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          ↓ PDF
         </a>
-        <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="btn-action">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 15h8M9 9h.01M15 9h.01"/></svg>
-          Hugging Face Dataset
+        <a href="https://github.com/ShreyaGautamm/personality-gb-sample" target="_blank" rel="noopener noreferrer" class="btn-dashed-plum">
+          &lt;&gt; Code
         </a>
-        <a href="#citation" class="btn-action">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          Cite (BibTeX)
+        <a href="#citation" class="btn-dashed-plum">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          BibTeX
         </a>
       </div>
 
