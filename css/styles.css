@@ -138,8 +138,8 @@ body {
 }
 
 .hero-topics {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-contrast);
@@ -152,8 +152,9 @@ body {
 
 .topic-dot {
   color: #3b82f6;
-  font-size: 0.95rem;
-  font-weight: 900;
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.85;
 }
 
 .hero-title {
