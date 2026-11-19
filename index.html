@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- Custom Stylesheet (with cache-buster) -->
+  <link rel="stylesheet" href="css/styles.css?v=18">
 </head>
 <body>
 
@@ -20,16 +20,16 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="#" class="nav-logo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-contrast);"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         <span>Personality-Gender-Bias</span>
       </a>
       <ul class="nav-links">
         <li><a href="#overview">Overview</a></li>
         <li><a href="#methodology">Methodology</a></li>
         <li><a href="#playground">Interactive Demo</a></li>
+        <li><a href="#story-game">Story Game</a></li>
         <li><a href="#results">Results</a></li>
         <li><a href="#limitations">Limitations</a></li>
-        <li><a href="version1.html" style="color: var(--brand-plum); font-weight: 700;">Story Comparator ↗</a></li>
         <li><a href="#citation" class="nav-cta">BibTeX</a></li>
       </ul>
     </div>
@@ -375,7 +375,7 @@
 
           <!-- Quick presets -->
           <div style="margin-top: 0.5rem;">
-            <span style="font-size: 0.72rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+            <span style="font-size: 0.74rem; font-weight: 800; color: var(--brand-contrast); text-transform: uppercase; letter-spacing: 0.06em;">
               Curated Examples from Paper:
             </span>
             <div class="quick-pills-bar">
@@ -399,7 +399,7 @@
         <div class="panel-display">
           <!-- Alignment Gauge Meter -->
           <div class="gauge-card">
-            <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">
+            <div style="font-size: 0.78rem; font-weight: 800; color: var(--brand-contrast); text-transform: uppercase; letter-spacing: 0.06em;">
               Centroid Alignment Spectrum
             </div>
 
@@ -426,6 +426,46 @@
           <!-- Sociological Insight Explanation -->
           <div id="gameExplanation" class="insight-card-display">
             <!-- Explanation rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Comparison Game (Human Validation Study) -->
+  <section id="story-game" class="section">
+    <div class="container">
+      <h2 class="section-title-large">Story Comparison Game</h2>
+      <p class="section-desc">
+        Can you spot which narrative exhibits greater gender stereotyping? Test your intuition against 3 independent human annotators from our validation study (inter-annotator agreement Fleiss' &kappa; = 0.66–0.69).
+      </p>
+
+      <div class="quiz-box">
+        <div class="quiz-question-header">
+          <span class="quiz-counter">Human Validation Pair</span>
+          <span id="quizRole" class="quiz-role-title">Loading...</span>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Click on the story that you judge displays stronger gender stereotyping:
+        </p>
+
+        <div class="quiz-options-grid">
+          <div id="quizCardA" class="quiz-card">
+            <div class="quiz-card-label">Story A</div>
+            <div id="quizTextA" class="quiz-card-text">Loading...</div>
+          </div>
+          <div id="quizCardB" class="quiz-card">
+            <div class="quiz-card-label">Story B</div>
+            <div id="quizTextB" class="quiz-card-text">Loading...</div>
+          </div>
+        </div>
+
+        <div id="quizReveal" class="quiz-reveal-box">
+          <div id="quizExplanation"></div>
+          <div id="quizStats" style="font-weight: 700; color: #15803d; margin-top: 0.5rem; font-size: 0.85rem;"></div>
+          <div style="margin-top: 1rem; text-align: right;">
+            <button id="quizNextBtn" class="btn-solid-plum" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;">Next Pair →</button>
           </div>
         </div>
       </div>
@@ -583,13 +623,13 @@
         Politecnico di Milano • Apple • Meta
       </p>
       <p style="font-size: 0.78rem;">
-        Hosted on Netlify • Created for transparent AI fairness and persona-conditioning evaluation.
+        Interactive Research Showcase • Created for transparent AI fairness and persona-conditioning evaluation.
       </p>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Scripts (with cache-buster) -->
+  <script src="js/data.js?v=10"></script>
+  <script src="js/app.js?v=10"></script>
 </body>
 </html>

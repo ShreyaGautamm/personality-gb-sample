@@ -9,6 +9,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initFigure2Flow();
   initCentroidGame();
+  initAnnotationQuiz();
   initRegressionPlot();
   initBibtexCopy();
 });
@@ -289,6 +290,79 @@ function initCentroidGame() {
   genderSelect.value = 'female';
   traitSelect.value = 'psychopathy_high';
   simulate();
+}
+
+/* -------------------------------------------------------------
+ * 2.5. Story Comparison Game (Human Validation Quiz)
+ * ------------------------------------------------------------- */
+function initAnnotationQuiz() {
+  const roleEl = document.getElementById('quizRole');
+  const cardA = document.getElementById('quizCardA');
+  const cardB = document.getElementById('quizCardB');
+  const textA = document.getElementById('quizTextA');
+  const textB = document.getElementById('quizTextB');
+  const revealBox = document.getElementById('quizReveal');
+  const explanationEl = document.getElementById('quizExplanation');
+  const statsEl = document.getElementById('quizStats');
+  const nextBtn = document.getElementById('quizNextBtn');
+
+  if (!cardA || !window.PAPER_DATA || !window.PAPER_DATA.quizPairs) return;
+
+  const quizData = window.PAPER_DATA.quizPairs;
+  let currentIndex = 0;
+
+  function loadQuestion(idx) {
+    const q = quizData[idx];
+    roleEl.textContent = `Pair ${idx + 1} of ${quizData.length}: ${q.occupation}`;
+    textA.textContent = `"${q.storyA}"`;
+    textB.textContent = `"${q.storyB}"`;
+
+    cardA.classList.remove('selected');
+    cardB.classList.remove('selected');
+    revealBox.classList.remove('show');
+    nextBtn.style.display = 'none';
+  }
+
+  function handleSelect(choice) {
+    const q = quizData[currentIndex];
+    if (choice === 'A') {
+      cardA.classList.add('selected');
+      cardB.classList.remove('selected');
+    } else {
+      cardB.classList.add('selected');
+      cardA.classList.remove('selected');
+    }
+
+    const isMatch = choice === q.moreStereotypedChoice;
+    explanationEl.innerHTML = `
+      <div style="margin-bottom: 0.4rem; color: #0f172a;">
+        <strong>${isMatch ? '✅ Your judgment matches the majority of human annotators!' : '💡 Interesting perspective! Here is how the annotators voted:'}</strong>
+      </div>
+      <div style="color: #334155; font-size: 0.9rem; line-height: 1.6;">${q.explanation}</div>
+      <div style="margin-top: 0.5rem; font-size: 0.82rem; color: #64748b;">
+        Condition A: <em>${q.conditionA}</em> &nbsp;|&nbsp; Condition B: <em>${q.conditionB}</em>
+      </div>
+    `;
+    statsEl.textContent = `Annotator Consensus: ${q.humanAgreement}.`;
+    revealBox.classList.add('show');
+
+    nextBtn.style.display = 'inline-block';
+    if (currentIndex < quizData.length - 1) {
+      nextBtn.textContent = 'Next Pair →';
+    } else {
+      nextBtn.textContent = 'Restart Game ↺';
+    }
+  }
+
+  cardA.addEventListener('click', () => handleSelect('A'));
+  cardB.addEventListener('click', () => handleSelect('B'));
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % quizData.length;
+    loadQuestion(currentIndex);
+  });
+
+  loadQuestion(0);
 }
 
 /* -------------------------------------------------------------
