@@ -523,8 +523,9 @@ function initRegressionPlot() {
       barLeft = 50 - barWidth;
     }
 
-    const isPositive = item.coef >= 0;
-    const barColor = isPositive ? '#0284c7' : '#e11d48';
+    const isPositive = item.coef > 0;
+    const isZero = item.coef === 0;
+    const barColor = isZero ? '#64748b' : (isPositive ? '#1d4ed8' : '#9f1239');
     const sign = item.coef > 0 ? '+' : '';
 
     html += `
@@ -534,7 +535,7 @@ function initRegressionPlot() {
           <div class="forest-axis-zero"></div>
           <div class="forest-fill-bar" style="left: ${barLeft}%; width: ${Math.max(2, barWidth)}%; background: ${barColor};"></div>
         </div>
-        <div style="font-family: var(--font-mono); font-size: 0.76rem; text-align: right; font-weight: 700; color: ${barColor};">
+        <div style="font-family: var(--font-mono); font-size: 0.82rem; text-align: right; font-weight: 700; color: ${barColor};">
           ${sign}${item.coef.toFixed(3)}
         </div>
       </div>
