@@ -414,14 +414,14 @@ function initAnnotationQuiz() {
 
     if (explanationEl) {
       explanationEl.innerHTML = `
-        <div style="font-size: 0.94rem; line-height: 1.65; color: #1e293b; margin: 0.75rem 0 0.5rem;">
+        <div style="font-size: 0.88rem; line-height: 1.55; color: #1e293b; margin: 0.4rem 0 0.35rem;">
           ${q.explanation}
         </div>
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.75rem; font-size: 0.78rem;">
-          <span style="background: #ffffff; border: 1px solid #bfdbfe; color: #1e40af; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700;">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.45rem; font-size: 0.76rem;">
+          <span style="background: #ffffff; border: 1px solid #bfdbfe; color: #1e40af; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">
             Story A: ${q.conditionA}
           </span>
-          <span style="background: #ffffff; border: 1px solid #fecdd3; color: #9f1239; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700;">
+          <span style="background: #ffffff; border: 1px solid #fecdd3; color: #9f1239; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700;">
             Story B: ${q.conditionB}
           </span>
         </div>
@@ -464,12 +464,12 @@ function initAnnotationQuiz() {
     if (verdictBanner) {
       verdictBanner.innerHTML = `
         <div class="game-over-banner">
-          <div style="font-size: 2.8rem; margin-bottom: 0.35rem;">🏆</div>
-          <div style="font-size: 1.4rem; font-weight: 800; color: #0f172a;">CHALLENGE COMPLETED!</div>
-          <div style="font-size: 1.05rem; font-weight: 700; color: #1d4ed8; margin: 0.4rem 0;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.2rem;">🏆</div>
+          <div style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">CHALLENGE COMPLETED!</div>
+          <div style="font-size: 0.98rem; font-weight: 700; color: #1d4ed8; margin: 0.3rem 0;">
             Final Score: ${score} / ${maxScore} PTS (${pct}% Consensus Alignment)
           </div>
-          <p style="font-size: 0.9rem; color: #475569; max-width: 520px; margin: 0.5rem auto 1rem;">
+          <p style="font-size: 0.85rem; color: #475569; max-width: 520px; margin: 0.4rem auto 0.75rem; line-height: 1.5;">
             You completed the human validation benchmark! In our formal study with 3 annotators, inter-annotator agreement reached Fleiss' &kappa; = 0.66–0.69, showing high consistency with our centroid embedding metric.
           </p>
         </div>
