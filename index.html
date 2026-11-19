@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Custom Stylesheet (with cache-buster) -->
-  <link rel="stylesheet" href="css/styles.css?v=21">
+  <link rel="stylesheet" href="css/styles.css?v=22">
 </head>
 <body>
 
@@ -325,9 +325,14 @@
     </div>
   </section>
 
-  <!-- 3. Interactive Centroid Alignment Demo (Clean & Structured) -->
-  <section id="playground" class="section">
+  <!-- 3. Interactive Centroid Alignment Demo (Standout Interactive Stage) -->
+  <section id="playground" class="section section-interactive-demo">
     <div class="container">
+      <div class="interactive-stage-badge">
+        <span class="stage-badge-dot"></span>
+        <span class="stage-badge-text">⚡ LIVE INTERACTIVE SIMULATOR · 23,400 ARTIFACTS</span>
+      </div>
+
       <h2 class="section-title-large">Interactive Alignment Demo</h2>
       <p class="section-desc">
         Select an occupation, persona gender, and personality trait. Run the simulation to see where the narrative aligns along the male-to-female stereotype continuum.
@@ -336,6 +341,13 @@
       <div class="playground-layout">
         <!-- Left: Configuration Controls -->
         <div class="panel-controls">
+          <div class="panel-console-header">
+            <div style="font-weight: 800; font-size: 0.88rem; color: #0f172a; display: flex; align-items: center; gap: 0.4rem;">
+              <span>⚙️</span> Persona Configuration
+            </div>
+            <span class="console-live-tag">LIVE TESTBENCH</span>
+          </div>
+
           <div class="control-field">
             <label for="gameOccSelect" class="control-label">Occupation (50 Indian Roles)</label>
             <select id="gameOccSelect" class="select-clean"></select>
@@ -398,8 +410,9 @@
         <div class="panel-display">
           <!-- Alignment Gauge Meter -->
           <div class="gauge-card">
-            <div style="font-size: 0.78rem; font-weight: 800; color: var(--brand-contrast); text-transform: uppercase; letter-spacing: 0.06em;">
-              Centroid Alignment Spectrum
+            <div class="gauge-header-row">
+              <div class="gauge-title-text">Centroid Alignment Spectrum</div>
+              <span class="gauge-metric-badge">IndicSBERT Sentence Metric</span>
             </div>
 
             <div class="gauge-track">
@@ -431,9 +444,14 @@
     </div>
   </section>
 
-  <!-- Story Comparison Game (Human Validation Study) -->
-  <section id="story-game" class="section">
+  <!-- Story Comparison Game (Standout Playable Game Stage) -->
+  <section id="story-game" class="section section-interactive-game">
     <div class="container">
+      <div class="interactive-stage-badge game-stage-badge">
+        <span class="stage-badge-dot game-dot"></span>
+        <span class="stage-badge-text">🎮 HUMAN VALIDATION GAME · FLEISS' &kappa; = 0.66–0.69</span>
+      </div>
+
       <h2 class="section-title-large">Story Comparison Game</h2>
       <p class="section-desc">
         Can you spot which narrative exhibits greater gender stereotyping? Test your intuition against 3 independent human annotators from our validation study (inter-annotator agreement Fleiss' &kappa; = 0.66–0.69).
@@ -441,21 +459,34 @@
 
       <div class="quiz-box">
         <div class="quiz-question-header">
-          <span class="quiz-counter">Human Validation Pair</span>
-          <span id="quizRole" class="quiz-role-title">Loading...</span>
+          <div>
+            <span class="quiz-counter">Human Validation Pair</span>
+            <div id="quizRole" class="quiz-role-title">Loading...</div>
+          </div>
+          <div class="quiz-kappa-pill">
+            <span class="kappa-dot"></span>
+            <span>Agreement: Fleiss' &kappa; = 0.66–0.69</span>
+          </div>
         </div>
 
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
-          Click on the story that you judge displays stronger gender stereotyping:
-        </p>
+        <div class="quiz-vote-callout">
+          <span style="font-size: 1.15rem;">👉</span>
+          <span>Which narrative displays <strong>stronger gender stereotyping</strong>? Click either card below to cast your vote:</span>
+        </div>
 
         <div class="quiz-options-grid">
           <div id="quizCardA" class="quiz-card">
-            <div class="quiz-card-label">Story A</div>
+            <div class="quiz-card-topbar">
+              <span class="quiz-card-label">Story A</span>
+              <span class="quiz-vote-prompt">Click to Vote 🗳️</span>
+            </div>
             <div id="quizTextA" class="quiz-card-text">Loading...</div>
           </div>
           <div id="quizCardB" class="quiz-card">
-            <div class="quiz-card-label">Story B</div>
+            <div class="quiz-card-topbar">
+              <span class="quiz-card-label">Story B</span>
+              <span class="quiz-vote-prompt">Click to Vote 🗳️</span>
+            </div>
             <div id="quizTextB" class="quiz-card-text">Loading...</div>
           </div>
         </div>
@@ -464,7 +495,7 @@
           <div id="quizExplanation"></div>
           <div id="quizStats" style="font-weight: 700; color: #15803d; margin-top: 0.5rem; font-size: 0.85rem;"></div>
           <div style="margin-top: 1rem; text-align: right;">
-            <button id="quizNextBtn" class="btn-solid-plum" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;">Next Pair →</button>
+            <button id="quizNextBtn" class="btn-solid-plum" style="padding: 0.55rem 1.35rem; font-size: 0.88rem;">Next Pair →</button>
           </div>
         </div>
       </div>
