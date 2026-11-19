@@ -311,15 +311,15 @@
           Centroid-Based Difference of Cosines
         </h3>
         <p style="font-size: 0.92rem; color: #475569;">
-          Given male and female centroids $c_{\text{male}}$ and $c_{\text{female}}$ in the IndicSBERT semantic space, each sentence $s_i$ receives a bias score:
+          Given male and female reference centroids <em>c</em><sub>male</sub> and <em>c</em><sub>female</sub> in the IndicSBERT semantic space, each sentence <em>s</em><sub><em>i</em></sub> receives a bias score:
         </p>
 
         <div class="formula-display-clean">
-          bias(s<sub>i</sub>) = cos(s<sub>i</sub>, c<sub>male</sub>) − cos(s<sub>i</sub>, c<sub>female</sub>)
+          bias(<em>s</em><sub><em>i</em></sub>) = cos(<em>s</em><sub><em>i</em></sub>, <em>c</em><sub>male</sub>) &minus; cos(<em>s</em><sub><em>i</em></sub>, <em>c</em><sub>female</sub>)
         </div>
 
         <p style="font-size: 0.88rem; color: #64748b;">
-          Values range in $[-1, 1]$, where positive scores indicate semantic alignment with male stereotypes and negative scores indicate alignment with female stereotypes. The artifact is summarized via peak salience: <strong>story(S) = bias(s<sub>k</sub>)</strong> where <em>k = argmax |bias(s<sub>i</sub>)|</em>.
+          Values range in [&minus;1, +1], where positive scores indicate semantic alignment with male stereotypes and negative scores indicate alignment with female stereotypes. The artifact is summarized via peak salience: <strong>story(<em>S</em>) = bias(<em>s</em><sub><em>k</em></sub>)</strong> where <em>k = argmax |bias(s<sub>i</sub>)|</em>.
         </p>
       </div>
     </div>
@@ -543,9 +543,9 @@
         <!-- OLS Trait Effects Forest Plot / Table -->
         <div class="forest-card">
           <div class="forest-card-header">
-            <div style="font-weight: 700; font-size: 1.02rem; color: #0f172a;">OLS Personality Trait Effects ($\beta_t$)</div>
+            <div style="font-weight: 700; font-size: 1.02rem; color: #0f172a;">OLS Personality Trait Effects (&beta;<sub>t</sub>)</div>
             <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.2rem;">
-              Positive values shift toward male stereotypes ($p < 0.05$).
+              Positive values shift toward male stereotypes (<em>p</em> &lt; 0.05).
             </div>
           </div>
 
@@ -572,7 +572,7 @@
             <div class="takeaway-header">Finding 1: Amplification vs Attenuation</div>
             <div class="takeaway-title">Dark Triad Consistently Amplifies Male Bias</div>
             <p class="takeaway-body">
-              Machiavellianism ($\beta = +0.021$) and Psychopathy ($\beta = +0.018$) systematically amplify male-stereotypical framing across all architectures, while traits like Openness ($\beta = -0.006$) and Emotionality ($\beta = -0.004$) attenuate it.
+              Machiavellianism (&beta; = +0.021) and Psychopathy (&beta; = +0.018) systematically amplify male-stereotypical framing across all architectures, while traits like Openness (&beta; = &minus;0.006) and Emotionality (&beta; = &minus;0.004) attenuate it.
             </p>
           </div>
 
@@ -580,7 +580,7 @@
             <div class="takeaway-header">Finding 2: Relative Strength</div>
             <div class="takeaway-title">Personality Frequently Exceeds Explicit Gender</div>
             <p class="takeaway-body">
-              In multiple model specifications, the marginal effect of assigning an antagonistic personality trait is larger in magnitude than the effect of explicit gender labeling ($\beta = +0.011$ for male personas).
+              In multiple model specifications, the marginal effect of assigning an antagonistic personality trait is larger in magnitude than the effect of explicit gender labeling (&beta; = +0.011 for male personas).
             </p>
           </div>
 
