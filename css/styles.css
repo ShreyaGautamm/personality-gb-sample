@@ -22,12 +22,12 @@
   --brand-plum-light: rgba(103, 22, 46, 0.07);
   --brand-plum-border: rgba(103, 22, 46, 0.25);
 
-  /* Contrast Accent - Refined Academic Blue (Harmonizes with Dark Wine) */
-  --brand-contrast: #0284c7;
-  --brand-contrast-hover: #0369a1;
-  --brand-contrast-light: rgba(2, 132, 199, 0.08);
-  --brand-contrast-border: rgba(2, 132, 199, 0.25);
-  --brand-contrast-text: #0369a1;
+  /* Contrast Accent - Royal Academic Blue (Harmonizes with Dark Wine) */
+  --brand-contrast: #1d4ed8;
+  --brand-contrast-hover: #1e40af;
+  --brand-contrast-light: rgba(29, 78, 216, 0.08);
+  --brand-contrast-border: rgba(29, 78, 216, 0.22);
+  --brand-contrast-text: #1d4ed8;
 
   /* Diagram Theme (matching paper Figure 2) */
   --pipeline-cream: #fefdf7;
@@ -61,9 +61,9 @@ body {
 /* Container */
 .container {
   width: 100%;
-  max-width: 980px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 1.75rem;
+  padding: 0 2rem;
 }
 
 /* Navigation */
@@ -71,9 +71,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(14px);
+  background-color: rgba(246, 248, 253, 0.94);
+  border-bottom: 1px solid rgba(220, 228, 242, 0.8);
 }
 
 .nav-container {
@@ -128,17 +128,19 @@ body {
 }
 
 /* -------------------------------------------------------------
- * Hero Section (Clean Reference Style)
+ * Hero Section (Filled with subtle light blue/purple gradient)
  * ------------------------------------------------------------- */
 .hero-section {
-  padding: 4.5rem 0 2.5rem;
+  background: linear-gradient(180deg, #f6f8fd 0%, #edf1fa 100%);
+  border-bottom: 1.5px solid #dce4f2;
+  padding: 4.5rem 0 3.25rem;
   text-align: left;
 }
 
 .hero-topics {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-contrast);
   margin-bottom: 1.25rem;
@@ -149,7 +151,7 @@ body {
 }
 
 .topic-dot {
-  color: #38bdf8;
+  color: #3b82f6;
   font-size: 0.95rem;
   font-weight: 900;
 }
@@ -171,10 +173,10 @@ body {
   font-size: 1.18rem;
   font-style: italic;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.65;
   color: #475569;
   margin-bottom: 2rem;
-  max-width: 900px;
+  max-width: 1020px;
 }
 
 .hero-authors-wrap {
@@ -197,9 +199,9 @@ body {
 }
 
 .author-entry sup {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--brand-contrast);
 }
 
 .hero-affils-list {
@@ -208,12 +210,13 @@ body {
   align-items: center;
   gap: 0.4rem 1.5rem;
   font-size: 0.88rem;
-  color: var(--text-muted);
+  color: #475569;
 }
 
 .affil-item sup {
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--brand-contrast);
 }
 
 .footnote-item {
@@ -235,52 +238,59 @@ body {
   gap: 0.5rem;
   background-color: var(--brand-plum);
   color: #ffffff;
-  padding: 0.58rem 1.25rem;
+  padding: 0.62rem 1.35rem;
   border-radius: 8px;
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
   transition: all 0.15s ease;
-  box-shadow: 0 1px 2px rgba(103, 22, 46, 0.2);
+  box-shadow: 0 2px 8px rgba(103, 22, 46, 0.25);
 }
 
 .btn-solid-plum:hover {
   background-color: var(--brand-plum-hover);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(103, 22, 46, 0.35);
 }
 
 .btn-dashed-plum {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: transparent;
+  background-color: #ffffff;
   color: var(--brand-plum);
   border: 1.5px dashed var(--brand-plum);
-  padding: 0.56rem 1.2rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 8px;
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.15s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .btn-dashed-plum:hover {
   background-color: var(--brand-plum-light);
   transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(103, 22, 46, 0.12);
 }
 
 /* -------------------------------------------------------------
  * Clean Sections
  * ------------------------------------------------------------- */
 .section {
-  padding: 3.5rem 0;
+  padding: 3.75rem 0;
   border-top: 1px solid var(--border-light);
 }
 
+.hero-section + .section {
+  border-top: none;
+}
+
 .section-title-large {
-  font-size: 2.1rem;
+  font-size: 2.15rem;
   font-weight: 800;
   letter-spacing: -0.025em;
   color: var(--text-title);
@@ -292,7 +302,7 @@ body {
   color: var(--text-body);
   line-height: 1.75;
   margin-bottom: 1.25rem;
-  max-width: 900px;
+  max-width: 1020px;
 }
 
 .section-desc:last-child {
@@ -601,8 +611,8 @@ body {
  * ------------------------------------------------------------- */
 .playground-layout {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 1.75rem;
+  grid-template-columns: 360px 1fr;
+  gap: 2rem;
   align-items: start;
 }
 
@@ -851,8 +861,15 @@ body {
 .takeaway-card {
   background: #f8fafc;
   border: 1px solid var(--border-light);
-  border-radius: 8px;
-  padding: 1.15rem;
+  border-left: 3.5px solid var(--brand-contrast);
+  border-radius: 0 8px 8px 0;
+  padding: 1.2rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.takeaway-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
 }
 
 .takeaway-header {
@@ -860,21 +877,21 @@ body {
   font-weight: 800;
   color: var(--brand-contrast);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin-bottom: 0.25rem;
 }
 
 .takeaway-title {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--text-title);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
 }
 
 .takeaway-body {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--text-body);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* -------------------------------------------------------------
@@ -883,7 +900,7 @@ body {
 .limitations-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 @media (max-width: 680px) {
@@ -895,22 +912,33 @@ body {
 .limit-box {
   background: #ffffff;
   border: 1px solid var(--border-light);
-  border-left: 3.5px solid #d97706;
+  border-left: 3.5px solid var(--brand-plum);
   border-radius: 0 8px 8px 0;
-  padding: 1.15rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.limit-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.limit-box:nth-child(even) {
+  border-left-color: var(--brand-contrast);
 }
 
 .limit-title {
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   font-weight: 700;
   color: var(--text-title);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
 }
 
 .limit-desc {
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   color: #475569;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 /* -------------------------------------------------------------
@@ -936,7 +964,7 @@ body {
   padding: 0.25rem 0.8rem;
   border-radius: 9999px;
   margin-bottom: 0.75rem;
-  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 1px 4px rgba(29, 78, 216, 0.25);
 }
 
 .bibtex-code-card {
