@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Custom Stylesheet (with cache-buster) -->
-  <link rel="stylesheet" href="css/styles.css?v=22">
+  <link rel="stylesheet" href="css/styles.css?v=23">
 </head>
 <body>
 
@@ -457,45 +457,80 @@
         Can you spot which narrative exhibits greater gender stereotyping? Test your intuition against 3 independent human annotators from our validation study (inter-annotator agreement Fleiss' &kappa; = 0.66–0.69).
       </p>
 
-      <div class="quiz-box">
-        <div class="quiz-question-header">
-          <div>
-            <span class="quiz-counter">Human Validation Pair</span>
+      <div class="quiz-box game-arena-box">
+        <!-- Game HUD -->
+        <div class="game-hud-bar">
+          <div class="hud-left">
+            <span class="hud-round-pill">ROUND <span id="quizRoundNum">1</span> OF <span id="quizTotalRounds">4</span></span>
             <div id="quizRole" class="quiz-role-title">Loading...</div>
           </div>
-          <div class="quiz-kappa-pill">
-            <span class="kappa-dot"></span>
-            <span>Agreement: Fleiss' &kappa; = 0.66–0.69</span>
+          <div class="hud-center">
+            <div class="quiz-kappa-pill">
+              <span class="kappa-dot"></span>
+              <span>Annotator Agreement &kappa; = 0.69</span>
+            </div>
           </div>
+          <div class="hud-right">
+            <div class="hud-stat-badge score-badge">
+              <span class="stat-lbl">SCORE</span>
+              <span id="quizScoreDisplay" class="stat-num">0</span>
+            </div>
+            <div class="hud-stat-badge streak-badge">
+              <span class="stat-lbl">STREAK</span>
+              <span id="quizStreakDisplay" class="stat-num">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Level Progress Track -->
+        <div class="game-progress-track">
+          <div id="quizProgressBar" class="game-progress-fill" style="width: 25%;"></div>
         </div>
 
         <div class="quiz-vote-callout">
-          <span style="font-size: 1.15rem;">👉</span>
-          <span>Which narrative displays <strong>stronger gender stereotyping</strong>? Click either card below to cast your vote:</span>
+          <span style="font-size: 1.15rem;">🎯</span>
+          <span>Which narrative displays <strong>stronger gender stereotyping</strong>? Click a card below to cast your vote:</span>
         </div>
 
-        <div class="quiz-options-grid">
-          <div id="quizCardA" class="quiz-card">
+        <!-- Battle Arena Grid: Story A vs Story B -->
+        <div class="quiz-battle-grid">
+          <!-- Card A -->
+          <div id="quizCardA" class="quiz-card card-choice-a">
             <div class="quiz-card-topbar">
-              <span class="quiz-card-label">Story A</span>
-              <span class="quiz-vote-prompt">Click to Vote 🗳️</span>
+              <span class="card-badge badge-a">STORY A</span>
+              <span id="quizVotePromptA" class="quiz-vote-prompt prompt-a">Vote Story A 🗳️</span>
             </div>
             <div id="quizTextA" class="quiz-card-text">Loading...</div>
+            <div class="card-tap-indicator">
+              <span>Click to Vote for Story A</span>
+            </div>
           </div>
-          <div id="quizCardB" class="quiz-card">
+
+          <!-- VS Badge in Middle -->
+          <div class="vs-badge-wrap">
+            <div class="vs-circle">VS</div>
+          </div>
+
+          <!-- Card B -->
+          <div id="quizCardB" class="quiz-card card-choice-b">
             <div class="quiz-card-topbar">
-              <span class="quiz-card-label">Story B</span>
-              <span class="quiz-vote-prompt">Click to Vote 🗳️</span>
+              <span class="card-badge badge-b">STORY B</span>
+              <span id="quizVotePromptB" class="quiz-vote-prompt prompt-b">Vote Story B 🗳️</span>
             </div>
             <div id="quizTextB" class="quiz-card-text">Loading...</div>
+            <div class="card-tap-indicator">
+              <span>Click to Vote for Story B</span>
+            </div>
           </div>
         </div>
 
+        <!-- Reveal & Score Results Box -->
         <div id="quizReveal" class="quiz-reveal-box">
-          <div id="quizExplanation"></div>
-          <div id="quizStats" style="font-weight: 700; color: #15803d; margin-top: 0.5rem; font-size: 0.85rem;"></div>
-          <div style="margin-top: 1rem; text-align: right;">
-            <button id="quizNextBtn" class="btn-solid-plum" style="padding: 0.55rem 1.35rem; font-size: 0.88rem;">Next Pair →</button>
+          <div id="quizVerdictBanner" class="quiz-verdict-banner"></div>
+          <div id="quizExplanation" class="quiz-explanation-text"></div>
+          <div id="quizStats" class="quiz-stats-text"></div>
+          <div style="margin-top: 1.25rem; text-align: right;">
+            <button id="quizNextBtn" class="btn-game-next">Next Round 🚀</button>
           </div>
         </div>
       </div>
@@ -659,7 +694,7 @@
   </footer>
 
   <!-- Scripts (with cache-buster) -->
-  <script src="js/data.js?v=10"></script>
-  <script src="js/app.js?v=10"></script>
+  <script src="js/data.js?v=11"></script>
+  <script src="js/app.js?v=11"></script>
 </body>
 </html>

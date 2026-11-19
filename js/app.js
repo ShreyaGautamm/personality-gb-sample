@@ -302,64 +302,203 @@ function initAnnotationQuiz() {
   const textA = document.getElementById('quizTextA');
   const textB = document.getElementById('quizTextB');
   const revealBox = document.getElementById('quizReveal');
+  const verdictBanner = document.getElementById('quizVerdictBanner');
   const explanationEl = document.getElementById('quizExplanation');
   const statsEl = document.getElementById('quizStats');
   const nextBtn = document.getElementById('quizNextBtn');
+
+  // Game HUD Elements
+  const roundNumEl = document.getElementById('quizRoundNum');
+  const totalRoundsEl = document.getElementById('quizTotalRounds');
+  const scoreDisplay = document.getElementById('quizScoreDisplay');
+  const streakDisplay = document.getElementById('quizStreakDisplay');
+  const progressBar = document.getElementById('quizProgressBar');
+  const promptA = document.getElementById('quizVotePromptA');
+  const promptB = document.getElementById('quizVotePromptB');
 
   if (!cardA || !window.PAPER_DATA || !window.PAPER_DATA.quizPairs) return;
 
   const quizData = window.PAPER_DATA.quizPairs;
   let currentIndex = 0;
+  let score = 0;
+  let streak = 0;
+  let hasAnswered = false;
+  let isGameOver = false;
+
+  function updateHUD() {
+    if (roundNumEl) roundNumEl.textContent = currentIndex + 1;
+    if (totalRoundsEl) totalRoundsEl.textContent = quizData.length;
+    if (scoreDisplay) scoreDisplay.textContent = `${score}`;
+    if (streakDisplay) streakDisplay.textContent = streak > 0 ? `🔥 ${streak}` : '0';
+    if (progressBar) {
+      const pct = ((currentIndex + 1) / quizData.length) * 100;
+      progressBar.style.width = `${pct}%`;
+    }
+  }
 
   function loadQuestion(idx) {
+    hasAnswered = false;
+    isGameOver = false;
     const q = quizData[idx];
-    roleEl.textContent = `Pair ${idx + 1} of ${quizData.length}: ${q.occupation}`;
-    textA.textContent = `"${q.storyA}"`;
-    textB.textContent = `"${q.storyB}"`;
 
-    cardA.classList.remove('selected');
-    cardB.classList.remove('selected');
+    if (roleEl) roleEl.textContent = q.occupation;
+    if (textA) textA.textContent = `"${q.storyA}"`;
+    if (textB) textB.textContent = `"${q.storyB}"`;
+
+    if (promptA) promptA.textContent = 'Vote Story A 🗳️';
+    if (promptB) promptB.textContent = 'Vote Story B 🗳️';
+
+    cardA.classList.remove('selected', 'dimmed', 'winner');
+    cardB.classList.remove('selected', 'dimmed', 'winner');
     revealBox.classList.remove('show');
     nextBtn.style.display = 'none';
+
+    updateHUD();
   }
 
   function handleSelect(choice) {
+    if (hasAnswered) return;
+    hasAnswered = true;
+
     const q = quizData[currentIndex];
+    const isMatch = (choice === q.moreStereotypedChoice);
+
+    if (isMatch) {
+      score += 100;
+      streak += 1;
+    } else {
+      score += 25;
+      streak = 0;
+    }
+    updateHUD();
+
     if (choice === 'A') {
       cardA.classList.add('selected');
-      cardB.classList.remove('selected');
+      cardB.classList.add('dimmed');
+      if (promptA) promptA.textContent = '✓ Your Vote';
     } else {
       cardB.classList.add('selected');
-      cardA.classList.remove('selected');
+      cardA.classList.add('dimmed');
+      if (promptB) promptB.textContent = '✓ Your Vote';
     }
 
-    const isMatch = choice === q.moreStereotypedChoice;
-    explanationEl.innerHTML = `
-      <div style="margin-bottom: 0.4rem; color: #0f172a;">
-        <strong>${isMatch ? '✅ Your judgment matches the majority of human annotators!' : '💡 Interesting perspective! Here is how the annotators voted:'}</strong>
-      </div>
-      <div style="color: #334155; font-size: 0.9rem; line-height: 1.6;">${q.explanation}</div>
-      <div style="margin-top: 0.5rem; font-size: 0.82rem; color: #64748b;">
-        Condition A: <em>${q.conditionA}</em> &nbsp;|&nbsp; Condition B: <em>${q.conditionB}</em>
-      </div>
-    `;
-    statsEl.textContent = `Annotator Consensus: ${q.humanAgreement}.`;
+    // Parse human consensus percentage
+    const matchVal = parseInt(q.humanAgreement.replace(/\D/g, '')) || 85;
+    const isAgreeA = q.moreStereotypedChoice === 'A';
+    const pctA = isAgreeA ? matchVal : (100 - matchVal);
+    const pctB = 100 - pctA;
+
+    if (verdictBanner) {
+      if (isMatch) {
+        verdictBanner.innerHTML = `
+          <div class="verdict-card match-card">
+            <span class="verdict-icon">🎯</span>
+            <div>
+              <div class="verdict-headline">BULLSEYE! (+100 PTS)</div>
+              <div class="verdict-subheadline">Your intuition matched the majority of human annotators!</div>
+            </div>
+          </div>
+        `;
+      } else {
+        verdictBanner.innerHTML = `
+          <div class="verdict-card alternate-card">
+            <span class="verdict-icon">💡</span>
+            <div>
+              <div class="verdict-headline">INTRIGUING PERSPECTIVE! (+25 PTS)</div>
+              <div class="verdict-subheadline">Human annotators judged the other story as displaying stronger bias.</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    if (explanationEl) {
+      explanationEl.innerHTML = `
+        <div style="font-size: 0.94rem; line-height: 1.65; color: #1e293b; margin: 0.75rem 0 0.5rem;">
+          ${q.explanation}
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.75rem; font-size: 0.78rem;">
+          <span style="background: #ffffff; border: 1px solid #bfdbfe; color: #1e40af; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700;">
+            Story A: ${q.conditionA}
+          </span>
+          <span style="background: #ffffff; border: 1px solid #fecdd3; color: #9f1239; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700;">
+            Story B: ${q.conditionB}
+          </span>
+        </div>
+      `;
+    }
+
+    if (statsEl) {
+      statsEl.innerHTML = `
+        <div class="consensus-display-box">
+          <div class="consensus-title-row">
+            <span>Human Annotators Voting Consensus:</span>
+            <strong style="color: #0f172a;">${q.humanAgreement}</strong>
+          </div>
+          <div class="consensus-bar-track">
+            <div class="consensus-fill-a" style="width: ${pctA}%;">Story A: ${pctA}%</div>
+            <div class="consensus-fill-b" style="width: ${pctB}%;">Story B: ${pctB}%</div>
+          </div>
+        </div>
+      `;
+    }
+
     revealBox.classList.add('show');
-
     nextBtn.style.display = 'inline-block';
+
     if (currentIndex < quizData.length - 1) {
-      nextBtn.textContent = 'Next Pair →';
+      nextBtn.textContent = 'Next Round 🚀';
     } else {
-      nextBtn.textContent = 'Restart Game ↺';
+      nextBtn.textContent = 'View Final Results 🏆';
     }
+  }
+
+  function showGameOver() {
+    isGameOver = true;
+    cardA.classList.remove('selected', 'dimmed');
+    cardB.classList.remove('selected', 'dimmed');
+
+    const maxScore = quizData.length * 100;
+    const pct = Math.round((score / maxScore) * 100);
+
+    if (verdictBanner) {
+      verdictBanner.innerHTML = `
+        <div class="game-over-banner">
+          <div style="font-size: 2.8rem; margin-bottom: 0.35rem;">🏆</div>
+          <div style="font-size: 1.4rem; font-weight: 800; color: #0f172a;">CHALLENGE COMPLETED!</div>
+          <div style="font-size: 1.05rem; font-weight: 700; color: #1d4ed8; margin: 0.4rem 0;">
+            Final Score: ${score} / ${maxScore} PTS (${pct}% Consensus Alignment)
+          </div>
+          <p style="font-size: 0.9rem; color: #475569; max-width: 520px; margin: 0.5rem auto 1rem;">
+            You completed the human validation benchmark! In our formal study with 3 annotators, inter-annotator agreement reached Fleiss' &kappa; = 0.66–0.69, showing high consistency with our centroid embedding metric.
+          </p>
+        </div>
+      `;
+    }
+
+    if (explanationEl) explanationEl.innerHTML = '';
+    if (statsEl) statsEl.innerHTML = '';
+    nextBtn.textContent = 'Play Again ↺';
   }
 
   cardA.addEventListener('click', () => handleSelect('A'));
   cardB.addEventListener('click', () => handleSelect('B'));
 
   nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % quizData.length;
-    loadQuestion(currentIndex);
+    if (isGameOver) {
+      score = 0;
+      streak = 0;
+      currentIndex = 0;
+      loadQuestion(0);
+      return;
+    }
+
+    if (currentIndex < quizData.length - 1) {
+      currentIndex++;
+      loadQuestion(currentIndex);
+    } else {
+      showGameOver();
+    }
   });
 
   loadQuestion(0);
